@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Wmoop.Transport — an L1 domain module. It owns the Vehicle is-a hierarchy AND
+    the cross-domain roles (Driver, Owner) that attach a transport facet to a
+    Nature.Person. The dependency direction is Transport -> Nature -> Core, which is
+    acyclic (invariant #5). Nature never references Transport: biology does not need
+    to know cars exist.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <RootNamespace>Wmoop.Transport</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wmoop.Core\Wmoop.Core.csproj" />
+    <ProjectReference Include="..\Wmoop.Nature\Wmoop.Nature.csproj" />
+  </ItemGroup>
+
+</Project>

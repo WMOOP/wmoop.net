@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Dependency-free conformance checks. This is a plain console app whose exit code
+    is non-zero on failure (so CI can gate on it), using a tiny hand-rolled assert
+    helper instead of xUnit/NUnit. That keeps the whole solution buildable and
+    testable fully offline (invariant #6: machine-checkable Definition of Done).
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Wmoop.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Wmoop.Core\Wmoop.Core.csproj" />
+    <ProjectReference Include="..\..\src\Wmoop.Nature\Wmoop.Nature.csproj" />
+    <ProjectReference Include="..\..\src\Wmoop.Transport\Wmoop.Transport.csproj" />
+  </ItemGroup>
+
+</Project>

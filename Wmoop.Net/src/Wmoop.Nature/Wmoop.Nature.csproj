@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Wmoop.Nature — an L1 domain module (biology branch of the Nature domain).
+    Depends only on the kernel (invariant #5: acyclic domain dependency graph).
+    It knows nothing about Transport; the cross-domain link lives in Wmoop.Transport,
+    which is allowed to depend on Nature, but never the reverse.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <RootNamespace>Wmoop.Nature</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wmoop.Core\Wmoop.Core.csproj" />
+  </ItemGroup>
+
+</Project>
