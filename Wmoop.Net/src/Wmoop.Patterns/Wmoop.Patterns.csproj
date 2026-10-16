@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Wmoop.Patterns — a library of hand-written BEHAVIOUR over the (generated) data
+    model: Visitors, Specifications, Builders, Strategies, Registries. This is where
+    WMOOP puts algorithms, keeping the generated domain classes pure state. Depends on
+    the domains it operates over (Nature, Transport, Geography); the dependency arrow
+    always points from behaviour to data, never the reverse.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <RootNamespace>Wmoop.Patterns</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wmoop.Core\Wmoop.Core.csproj" />
+    <ProjectReference Include="..\Wmoop.Nature\Wmoop.Nature.csproj" />
+    <ProjectReference Include="..\Wmoop.Transport\Wmoop.Transport.csproj" />
+    <ProjectReference Include="..\Wmoop.Geography\Wmoop.Geography.csproj" />
+  </ItemGroup>
+
+</Project>
