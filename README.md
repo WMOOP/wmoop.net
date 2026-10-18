@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="wmoop.net" src="brand/wmoop.net.svg" width="340">
+</p>
+
 # wmoop.net
 
 **The C# / .NET binding and reference implementation of [WMOOP](https://github.com/WMOOP) —
