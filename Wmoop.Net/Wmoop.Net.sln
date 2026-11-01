@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Patterns.Demo", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Tests", "test\Wmoop.Tests\Wmoop.Tests.csproj", "{42E7DB90-221A-4313-A17B-56DEFAC0192E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generated", "generated", "{10872A52-0024-0064-E5E9-275657532B83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Generated", "..\generated\Wmoop.Generated\Wmoop.Generated.csproj", "{350947F5-0672-4DC2-949C-D3B5C8F782AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,8 +129,23 @@ Global
 		{42E7DB90-221A-4313-A17B-56DEFAC0192E}.Release|x64.Build.0 = Release|Any CPU
 		{42E7DB90-221A-4313-A17B-56DEFAC0192E}.Release|x86.ActiveCfg = Release|Any CPU
 		{42E7DB90-221A-4313-A17B-56DEFAC0192E}.Release|x86.Build.0 = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|x64.Build.0 = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{350947F5-0672-4DC2-949C-D3B5C8F782AA} = {10872A52-0024-0064-E5E9-275657532B83}
 	EndGlobalSection
 EndGlobal
