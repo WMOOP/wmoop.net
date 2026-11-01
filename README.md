@@ -78,6 +78,29 @@ reference that the generator's output will match (conformance-tested). Behaviour
 strategies, specifications) is always hand-written and lives *outside* the generated data model —
 see [PATTERNS.md](https://github.com/WMOOP/wmoop.doc/blob/main/PATTERNS.md).
 
+## Generated binding
+
+`generated/Wmoop.Generated/` is the binding **generated** by [`wmoop.tools`](https://github.com/WMOOP/wmoop.tools)
+from the canonical model in [`wmoop.doc`](https://github.com/WMOOP/wmoop.doc). Both repos are
+pinned as git submodules, `external/wmoop.doc` and `external/wmoop.tools`, and
+`generated/WMOOP_SOURCE.json` records the exact commits it was generated from.
+
+- **Never edit `generated/` by hand.** CI regenerates it from the pins and fails on any difference.
+- **Regenerate** after moving a pin. This needs Python 3.10+ and
+  `pip install -r external/wmoop.doc/schema/requirements.txt`:
+
+  ```bash
+  git submodule update --init                        # external/wmoop.doc, external/wmoop.tools
+  git -C external/wmoop.doc submodule update --init  # the grammar the model validator reads
+  python external/wmoop.tools/tools/regen_binding.py --lang csharp
+  ```
+- The solution includes `Wmoop.Generated`, so `dotnet build Wmoop.Net/Wmoop.Net.sln` compiles it
+  together with the hand-written projects.
+
+For now the generated code sits next to the hand-written reference projects in `Wmoop.Net/src/`, which stays as it is. Once the generator
+emits extensible base classes and one package per domain, the hand-written data classes give way
+to the generated ones and only hand-written behaviour stays here.
+
 ## License
 
 **Apache-2.0** — see [`LICENSE`](LICENSE).
