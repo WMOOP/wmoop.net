@@ -1,0 +1,12 @@
+<Project>
+
+  <!--
+    The generated projects under generated/ compile the hand-written halves of their partial
+    classes from $(WmoopSourceRoot)/<Project>/, e.g. Wmoop.Net/src/Wmoop.Transport/Moped.cs
+    (the generation gap, wmoop.doc docs/03-architecture.md §2.2).
+  -->
+  <PropertyGroup>
+    <WmoopSourceRoot>$(MSBuildThisFileDirectory)Wmoop.Net/src</WmoopSourceRoot>
+  </PropertyGroup>
+
+</Project>

@@ -20,14 +20,14 @@ public sealed class PopulationSumVisitor : IAreaVisitor
 
     public void VisitCity(City city)
     {
-        Total += city.ResidentPopulation;
+        Total += city.ResidentPopulation ?? 0;
         CityCount++;
     }
 
     private void Recurse(AdministrativeArea area)
     {
-        Total += area.ResidentPopulation;
-        foreach (var child in area.Children)
+        Total += area.ResidentPopulation ?? 0;
+        foreach (var child in area.Contains)
             child.Accept(this);
     }
 }

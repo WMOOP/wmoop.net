@@ -10,10 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wmoop.Core\Wmoop.Core.csproj" />
-    <ProjectReference Include="..\Wmoop.Nature\Wmoop.Nature.csproj" />
-    <ProjectReference Include="..\Wmoop.Transport\Wmoop.Transport.csproj" />
-    <ProjectReference Include="..\Wmoop.Geography\Wmoop.Geography.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Core\Wmoop.Core.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Nature\Wmoop.Nature.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Transport\Wmoop.Transport.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Geography\Wmoop.Geography.csproj" />
     <ProjectReference Include="..\Wmoop.Patterns\Wmoop.Patterns.csproj" />
   </ItemGroup>
 

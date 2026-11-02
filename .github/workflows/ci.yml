@@ -16,5 +16,9 @@ jobs:
     with:
       lang: csharp
       dotnet: true
-      build: dotnet build Wmoop.Net/Wmoop.Net.sln --configuration Release --nologo
-      test: dotnet run --project Wmoop.Net/test/Wmoop.Tests --configuration Release --no-build
+      build: >-
+        dotnet build generated/Wmoop.Generated.sln --configuration Release --nologo &&
+        dotnet build Wmoop.Net/Wmoop.Net.sln --configuration Release --nologo
+      test: >-
+        dotnet run --project Wmoop.Net/test/Wmoop.Tests --configuration Release --no-build &&
+        dotnet run --project Wmoop.Net/src/Wmoop.Patterns.Demo --configuration Release --no-build
