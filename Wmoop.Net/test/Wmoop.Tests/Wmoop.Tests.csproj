@@ -15,9 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Wmoop.Core\Wmoop.Core.csproj" />
-    <ProjectReference Include="..\..\src\Wmoop.Nature\Wmoop.Nature.csproj" />
-    <ProjectReference Include="..\..\src\Wmoop.Transport\Wmoop.Transport.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Core\Wmoop.Core.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Nature\Wmoop.Nature.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Transport\Wmoop.Transport.csproj" />
+    <ProjectReference Include="..\..\..\generated\Wmoop.Geography\Wmoop.Geography.csproj" />
   </ItemGroup>
 
 </Project>

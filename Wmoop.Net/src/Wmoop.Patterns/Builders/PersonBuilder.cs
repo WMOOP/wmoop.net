@@ -14,22 +14,31 @@ public sealed class PersonBuilder
     private ConceptId _id;
     private bool _idSet;
     private string _name = "Unnamed";
-    private int _birthYear = 1970;
+    private string? _fullName;
+    private DateOnly? _dateOfBirth;
     private readonly List<Func<Role>> _roles = new();
 
     public PersonBuilder WithId(ConceptId id) { _id = id; _idSet = true; return this; }
-    public PersonBuilder Named(string name) { _name = name; return this; }
-    public PersonBuilder BornIn(int year) { _birthYear = year; return this; }
 
-    public PersonBuilder WithDriverLicence(string number, IEnumerable<string> categories, DateOnly issue, DateOnly expiry)
+    public PersonBuilder Named(string name, string? fullName = null) { _name = name; _fullName = fullName; return this; }
+
+    public PersonBuilder BornOn(DateOnly dateOfBirth) { _dateOfBirth = dateOfBirth; return this; }
+
+    public PersonBuilder WithDriverLicence(string number, IEnumerable<LicenceCategory> categories, DateOnly? expiry = null)
     {
-        _roles.Add(() => new DriverRole(number, categories, issue, expiry));
+        _roles.Add(() => new Driver { LicenceNumber = number, LicenceCategories = categories.ToArray(), LicenceExpiry = expiry });
         return this;
     }
 
-    public PersonBuilder WithOwnership(Vehicle asset, DateOnly since)
+    public PersonBuilder WithOwnership(DateOnly since, params Vehicle[] vehicles)
     {
-        _roles.Add(() => new OwnerRole(asset, since));
+        _roles.Add(() =>
+        {
+            var owner = new Owner { OwnedSince = since };
+            foreach (var vehicle in vehicles)
+                owner.Owns.Add(vehicle);
+            return owner;
+        });
         return this;
     }
 
@@ -37,8 +46,7 @@ public sealed class PersonBuilder
     {
         if (!_idSet)
             throw new InvalidOperationException("A person needs a ConceptId; call WithId() first.");
-
-        var person = new Person(_id, _name, _birthYear);
+        var person = new Person { Id = _id, Name = _name, FullName = _fullName ?? _name, DateOfBirth = _dateOfBirth };
         foreach (var make in _roles)
             person.AddRole(make());
         return person;

@@ -9,8 +9,9 @@
 
 WMOOP models the real world as one language-neutral, object-oriented knowledge model (the *World
 Model*, authored in the **WML** DSL in [`wmoop.doc`](https://github.com/WMOOP/wmoop.doc)). This
-repo is the **C# projection** of that model: idiomatic .NET types for the meta-model and a few seed
-domains, demonstrating the architecture end to end.
+repo is the **C# projection** of that model: .NET types generated from it for every domain, plus
+hand-written behaviour, design patterns and demos on a few seed domains, demonstrating the
+architecture end to end.
 
 > The canonical model and all design documents live in **[`wmoop.doc`](https://github.com/WMOOP/wmoop.doc)**.
 > Read the [whitepaper](https://github.com/WMOOP/wmoop.doc/blob/main/docs/whitepaper.md),
@@ -19,36 +20,52 @@ domains, demonstrating the architecture end to end.
 
 ## What this shows
 
-- **A clean meta-model kernel** (`Wmoop.Core`): `Entity`, `ConceptId`, `Quantity` (unit-bearing),
-  and the role machinery `IRole` / `Role` / `IHasRoles` / `RoleContainer`.
+- **The data classes are generated** from the WML model by [`wmoop.tools`](https://github.com/WMOOP/wmoop.tools):
+  - one project per domain (`Wmoop.Core`, `Wmoop.Nature`, `Wmoop.Transport`, `Wmoop.Geography`, …), in `generated/`;
+  - the kernel `Entity`, `ConceptId`, `Quantity` (unit-bearing), roles and `Links<T>` live in `Wmoop.Core`.
+- **Behaviour is hand-written**, in the other half of each `partial` class (the generation gap) under `Wmoop.Net/src/`:
+  - `Vehicle.Describe`;
+  - `Driver.CanDrive`;
+  - `Person.AgeOn`;
+  - `AdministrativeArea.TotalPopulation` / `Accept`.
 - **A genuine, shallow is-a hierarchy** (`Wmoop.Transport`): `Vehicle → RoadVehicle → Motorcycle →
   Moped`, with polymorphism.
-- **The cross-domain crux done right** — a `Person` (`Wmoop.Nature`) acquires a **`Driver`** and an
-  **`Owner`** role by **composition**, never `Driver : Person`. A person holds several roles at
-  once; each carries its own meta (licence, ownership).
-- **Design patterns on the model** (`Wmoop.Patterns`): **Composite** (geography `Country ⊃ County ⊃
-  City`, `part_of`), **Visitor** (where behaviour lives when data is generated), **Specification**
-  (composable rules / queries), **Builder**, **Strategy**, **Registry/Flyweight**.
-- **Dependency-free conformance tests** and two runnable demos.
+- **The cross-domain crux done right**:
+  - a `Person` (`Wmoop.Nature`) acquires a **`Driver`** and an **`Owner`** role by **composition**, never `Driver : Person`;
+  - a role refuses a subject of the wrong type;
+  - a person holds several roles at once, each carrying its own meta (licence, ownership).
+- **Relations are generated with their inverse**:
+  - `county.Contains` / `city.PartOf`;
+  - `owner.Owns` / `vehicle.OwnedBy`.
+- **Design patterns on the model** (`Wmoop.Patterns`):
+  - **Composite** (geography `Country ⊃ County ⊃ City`, `part_of`);
+  - **Visitor** (where behaviour lives when data is generated);
+  - **Specification** (composable rules / queries);
+  - **Builder**, **Strategy**, **Registry/Flyweight**.
+- **Dependency-free tests** and two runnable demos.
 
 ## Layout
 
 ```
+generated/                     # GENERATED from the pinned model; never edited by hand
+├── Wmoop.Generated.sln        # every generated project
+├── Wmoop.Core/                # kernel + the wmoop.core module
+├── Wmoop.Nature/  Wmoop.Transport/  Wmoop.Geography/  …   # one project per domain, *.Gen.cs
+└── WMOOP_SOURCE.json          # the wmoop.doc / wmoop.json / wmoop.tools commits it came from
+external/                      # git submodules: wmoop.doc (the model), wmoop.tools (the generator)
+Directory.Build.props          # WmoopSourceRoot: where the generated projects find their hand-written halves
 Wmoop.Net/
-├── Wmoop.Net.sln
+├── Wmoop.Net.sln              # the generated projects used here + the projects below
 ├── src/
-│   ├── Wmoop.Core/            # L0 meta-model kernel
-│   ├── Wmoop.Nature/          # Animal → Person (biology)
-│   ├── Wmoop.Transport/       # Vehicle hierarchy + Driver/Owner roles
-│   ├── Wmoop.Geography/       # AdministrativeArea Composite (part_of)
+│   ├── Wmoop.Nature/          # hand-written halves (no project of their own): Person.cs
+│   ├── Wmoop.Transport/       # Vehicle.cs, Motorcycle.cs, Moped.cs, Driver.cs
+│   ├── Wmoop.Geography/       # AdministrativeArea.cs, Country/County/City.cs, IAreaVisitor.cs
 │   ├── Wmoop.Patterns/        # Visitors, Specifications, Builders, Strategies, Registry
 │   ├── Wmoop.Demo/            # cross-domain roles + polymorphism walkthrough
-│   └── Wmoop.Patterns.Demo/   # one runnable section per design pattern
+│   └── Wmoop.Patterns.Demo/   # one runnable section per design pattern, self-checking
 └── test/
-    └── Wmoop.Tests/           # dependency-free conformance checks (non-zero exit on failure)
+    └── Wmoop.Tests/           # dependency-free checks (non-zero exit on failure)
 ```
-
-Each type's XML-doc names the WM meta-model concept (or design pattern) it realises.
 
 ## Build & run
 
@@ -56,40 +73,34 @@ Requires the **.NET 8 SDK** (the projects target `net8.0`). With a newer runtime
 roll-forward as shown.
 
 ```bash
-cd Wmoop.Net
-dotnet build Wmoop.Net.sln
+dotnet build generated/Wmoop.Generated.sln     # every domain
+dotnet build Wmoop.Net/Wmoop.Net.sln           # patterns, demos, tests
 
 # run the walkthroughs
-dotnet run --project src/Wmoop.Demo
-dotnet run --project src/Wmoop.Patterns.Demo
+dotnet run --project Wmoop.Net/src/Wmoop.Demo
+dotnet run --project Wmoop.Net/src/Wmoop.Patterns.Demo
 
-# run the conformance tests (exit code is non-zero on failure, so CI can gate on it)
-dotnet run --project test/Wmoop.Tests
+# run the tests (exit code is non-zero on failure, so CI can gate on it)
+dotnet run --project Wmoop.Net/test/Wmoop.Tests
 ```
 
 If you only have .NET 9/10/11 installed, prefix with `DOTNET_ROLL_FORWARD=LatestMajor` (bash) or
 `$env:DOTNET_ROLL_FORWARD='LatestMajor'` (PowerShell).
 
-## Relation to the canonical model
-
-These C# types mirror the WML in `wmoop.doc/model/` (`transport`, `nature`, `geography`). In the
-target architecture the data classes are **generated** from that WML; this repo is the hand-written
-reference that the generator's output will match (conformance-tested). Behaviour (visitors,
-strategies, specifications) is always hand-written and lives *outside* the generated data model —
-see [PATTERNS.md](https://github.com/WMOOP/wmoop.doc/blob/main/PATTERNS.md).
-
 ## Generated binding
 
-`generated/Wmoop.Generated/` is the binding **generated** by [`wmoop.tools`](https://github.com/WMOOP/wmoop.tools)
-from the canonical model in [`wmoop.doc`](https://github.com/WMOOP/wmoop.doc). Both repos are
-pinned as git submodules, `external/wmoop.doc` and `external/wmoop.tools`, and
-`generated/WMOOP_SOURCE.json` records the exact commits it was generated from.
+`generated/` is generated by [`wmoop.tools`](https://github.com/WMOOP/wmoop.tools) from the
+canonical model in [`wmoop.doc`](https://github.com/WMOOP/wmoop.doc). Both are pinned as git
+submodules, `external/wmoop.doc` and `external/wmoop.tools`, and `generated/WMOOP_SOURCE.json`
+records the exact commits it was generated from.
 
 - **Never edit `generated/` by hand.** CI regenerates it from the pins and fails on any difference.
+  To change data, change the model in `wmoop.doc` (or the generator in `wmoop.tools`). To add
+  behaviour, add a `partial` class under `Wmoop.Net/src/<Project>/`. The generated project compiles it.
 - **Regeneration is automatic.** When `wmoop.doc` or `wmoop.tools` changes, and daily,
-  [`regen.yml`](.github/workflows/regen.yml) moves both pins to upstream `main`, regenerates, runs
-  the tests and opens (or updates) one `chore(regen): …` pull request.
-- **Regenerate** after moving a pin. This needs Python 3.10+ and
+  [`regen.yml`](.github/workflows/regen.yml) moves both pins to upstream `main`, regenerates, builds,
+  runs the tests and opens (or updates) one `chore(regen): …` pull request.
+- **To regenerate by hand** after moving a pin, you need Python 3.10+ and
   `pip install -r external/wmoop.doc/schema/requirements.txt`:
 
   ```bash
@@ -97,12 +108,11 @@ pinned as git submodules, `external/wmoop.doc` and `external/wmoop.tools`, and
   git -C external/wmoop.doc submodule update --init  # the grammar the model validator reads
   python external/wmoop.tools/tools/regen_binding.py --lang csharp
   ```
-- The solution includes `Wmoop.Generated`, so `dotnet build Wmoop.Net/Wmoop.Net.sln` compiles it
-  together with the hand-written projects.
 
-For now the generated code sits next to the hand-written reference projects in `Wmoop.Net/src/`, which stays as it is. Once the generator
-emits extensible base classes and one package per domain, the hand-written data classes give way
-to the generated ones and only hand-written behaviour stays here.
+When the model changes in a way the hand-written half relies on, for example a new
+`AdministrativeArea` subclass that needs its `Accept`, the regeneration PR fails to build. A human
+then adds the behaviour half. Generated code never needs a manual edit
+([docs/03-architecture.md §4.4](https://github.com/WMOOP/wmoop.doc/blob/main/docs/03-architecture.md)).
 
 ## License
 

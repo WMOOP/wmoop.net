@@ -21,13 +21,13 @@ public sealed class PrettyPrintVisitor : IAreaVisitor
     public void VisitCity(City city) => Line(city);
 
     private void Line(AdministrativeArea area) =>
-        _sb.AppendLine($"{new string(' ', _depth * 2)}- {area.Name} ({area.AreaKind}, pop {area.ResidentPopulation})");
+        _sb.AppendLine($"{new string(' ', _depth * 2)}- {area.Name} ({area.AreaKind}, pop {area.ResidentPopulation?.ToString() ?? "unknown"})");
 
     private void Descend(AdministrativeArea area)
     {
         Line(area);
         _depth++;
-        foreach (var child in area.Children)
+        foreach (var child in area.Contains)
             child.Accept(this);
         _depth--;
     }

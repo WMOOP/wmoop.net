@@ -1,5 +1,3 @@
-using Wmoop.Core;
-
 namespace Wmoop.Geography;
 
 /// <summary>

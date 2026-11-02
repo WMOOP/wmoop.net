@@ -18,5 +18,5 @@ public sealed class CompactAreaFormat : IAreaFormatStrategy
 public sealed class CensusAreaFormat : IAreaFormatStrategy
 {
     public string Format(AdministrativeArea area) =>
-        $"{area.Name} [{area.AreaKind}] pop={area.TotalPopulation:N0} across {area.Children.Count} sub-area(s)";
+        $"{area.Name} [{area.AreaKind}] pop={area.TotalPopulation:N0} across {area.Contains.Count} sub-area(s)";
 }
