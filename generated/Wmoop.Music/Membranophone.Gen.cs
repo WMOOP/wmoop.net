@@ -14,4 +14,11 @@ namespace Wmoop.Music;
 public partial class Membranophone : MusicalInstrument
 {
     public new const string WmId = "wmoop.music/Membranophone";
+
+    /// <summary>A membranophone with a struck head and snares that rattle against it. Individual <c>wmoop.music/SnareDrum</c>.</summary>
+    public static Membranophone SnareDrum { get; } = new()
+    {
+        Id = "wmoop.music/SnareDrum",
+        Name = "SnareDrum",
+    };
 }

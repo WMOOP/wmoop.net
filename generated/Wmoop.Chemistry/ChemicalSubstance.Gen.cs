@@ -19,7 +19,17 @@ public abstract partial class ChemicalSubstance : global::Wmoop.Core.Entity
     public StateOfMatter? StandardState { get; init; }
 
     /// <summary>The temperature at which the pure substance passes from the solid to the liquid state at standard pressure.</summary>
-    public global::Wmoop.Core.Quantity? MeltingPoint { get; init; }
+    public global::Wmoop.Core.Quantity? MeltingPoint
+    {
+        get => _wmMeltingPoint;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "K", "wmoop.core/Temperature", nameof(MeltingPoint));
+            _wmMeltingPoint = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmMeltingPoint;
 
     /// <summary>Inverse of <c>wmoop.chemistry/ChemicalReaction#hasReactant</c>.</summary>
     public global::Wmoop.Core.Links<ChemicalReaction> ConsumedIn => _wmConsumedIn ??= new(

@@ -16,7 +16,17 @@ public partial class Room : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.architecture/Room";
 
     /// <summary>The usable floor area enclosed by the room.</summary>
-    public global::Wmoop.Core.Quantity? FloorArea { get; init; }
+    public global::Wmoop.Core.Quantity? FloorArea
+    {
+        get => _wmFloorArea;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "m2", "wmoop.core/Area", nameof(FloorArea));
+            _wmFloorArea = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmFloorArea;
 
     /// <summary>partOf</summary>
     public Building? PartOf

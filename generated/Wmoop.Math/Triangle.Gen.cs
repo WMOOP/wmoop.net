@@ -14,4 +14,16 @@ namespace Wmoop.Math;
 public partial class Triangle : Polygon
 {
     public new const string WmId = "wmoop.math/Triangle";
+
+    /// <inheritdoc/>
+    public required override long SideCount
+    {
+        get => base.SideCount;
+        init
+        {
+            base.SideCount = value;
+            if (!(value == 3))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A triangle has exactly three sides. [three-sides: self.sideCount == 3]", nameof(SideCount));
+        }
+    }
 }

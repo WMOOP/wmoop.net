@@ -14,4 +14,16 @@ namespace Wmoop.Math;
 public partial class Quadrilateral : Polygon
 {
     public new const string WmId = "wmoop.math/Quadrilateral";
+
+    /// <inheritdoc/>
+    public required override long SideCount
+    {
+        get => base.SideCount;
+        init
+        {
+            base.SideCount = value;
+            if (!(value == 4))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A quadrilateral has exactly four sides. [four-sides: self.sideCount == 4]", nameof(SideCount));
+        }
+    }
 }

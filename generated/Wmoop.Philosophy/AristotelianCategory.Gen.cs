@@ -17,4 +17,84 @@ public partial class AristotelianCategory : global::Wmoop.Core.Entity
 
     /// <summary>The transliterated Greek term Aristotle uses for the category.</summary>
     public string? GreekTerm { get; init; }
+
+    /// <summary>What a thing is - the category of independent beings (Aristotle's examples: man, horse). Individual <c>wmoop.philosophy/Substance</c>.</summary>
+    public static AristotelianCategory Substance { get; } = new()
+    {
+        Id = "wmoop.philosophy/Substance",
+        Name = "Substance",
+        GreekTerm = "ousia",
+    };
+
+    /// <summary>How much or how many something is (Aristotle's examples: four-foot, five-foot). Individual <c>wmoop.philosophy/Quantity</c>.</summary>
+    public static AristotelianCategory Quantity { get; } = new()
+    {
+        Id = "wmoop.philosophy/Quantity",
+        Name = "Quantity",
+        GreekTerm = "poson",
+    };
+
+    /// <summary>What sort of thing something is (Aristotle's examples: white, grammatical). Individual <c>wmoop.philosophy/Quality</c>.</summary>
+    public static AristotelianCategory Quality { get; } = new()
+    {
+        Id = "wmoop.philosophy/Quality",
+        Name = "Quality",
+        GreekTerm = "poion",
+    };
+
+    /// <summary>How something stands to something else (Aristotle's examples: double, half, greater). Individual <c>wmoop.philosophy/Relation</c>.</summary>
+    public static AristotelianCategory Relation { get; } = new()
+    {
+        Id = "wmoop.philosophy/Relation",
+        Name = "Relation",
+        GreekTerm = "pros ti",
+    };
+
+    /// <summary>Where something is (Aristotle's examples: in the Lyceum, in the market-place). Individual <c>wmoop.philosophy/Place</c>.</summary>
+    public static AristotelianCategory Place { get; } = new()
+    {
+        Id = "wmoop.philosophy/Place",
+        Name = "Place",
+        GreekTerm = "pou",
+    };
+
+    /// <summary>When something is (Aristotle's examples: yesterday, last year). The category of 'when', distinct from the physical quantity of time. Individual <c>wmoop.philosophy/Time</c>.</summary>
+    public static AristotelianCategory Time { get; } = new()
+    {
+        Id = "wmoop.philosophy/Time",
+        Name = "Time",
+        GreekTerm = "pote",
+    };
+
+    /// <summary>The posture in which something is placed (Aristotle's examples: is lying, is sitting). Individual <c>wmoop.philosophy/Position</c>.</summary>
+    public static AristotelianCategory Position { get; } = new()
+    {
+        Id = "wmoop.philosophy/Position",
+        Name = "Position",
+        GreekTerm = "keisthai",
+    };
+
+    /// <summary>The condition of having something (Aristotle's examples: has shoes on, has armour on). Individual <c>wmoop.philosophy/State</c>.</summary>
+    public static AristotelianCategory State { get; } = new()
+    {
+        Id = "wmoop.philosophy/State",
+        Name = "State",
+        GreekTerm = "echein",
+    };
+
+    /// <summary>The doing of something (Aristotle's examples: to cut, to burn). Individual <c>wmoop.philosophy/Action</c>.</summary>
+    public static AristotelianCategory Action { get; } = new()
+    {
+        Id = "wmoop.philosophy/Action",
+        Name = "Action",
+        GreekTerm = "poiein",
+    };
+
+    /// <summary>The undergoing of something, being acted upon (Aristotle's examples: to be cut, to be burned). Individual <c>wmoop.philosophy/Affection</c>.</summary>
+    public static AristotelianCategory Affection { get; } = new()
+    {
+        Id = "wmoop.philosophy/Affection",
+        Name = "Affection",
+        GreekTerm = "paschein",
+    };
 }

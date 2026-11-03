@@ -14,4 +14,11 @@ namespace Wmoop.Music;
 public partial class Chordophone : MusicalInstrument
 {
     public new const string WmId = "wmoop.music/Chordophone";
+
+    /// <summary>A four-stringed bowed chordophone of the violin family. Individual <c>wmoop.music/Violin</c>.</summary>
+    public static Chordophone Violin { get; } = new()
+    {
+        Id = "wmoop.music/Violin",
+        Name = "Violin",
+    };
 }

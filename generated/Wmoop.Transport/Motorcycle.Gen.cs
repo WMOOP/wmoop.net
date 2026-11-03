@@ -16,5 +16,15 @@ public partial class Motorcycle : RoadVehicle
     public new const string WmId = "wmoop.transport/Motorcycle";
 
     /// <summary>Total swept volume of the engine's cylinders.</summary>
-    public required global::Wmoop.Core.Quantity EngineDisplacement { get; init; }
+    public required global::Wmoop.Core.Quantity EngineDisplacement
+    {
+        get => _wmEngineDisplacement;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "cm3", "wmoop.core/Volume", nameof(EngineDisplacement));
+            _wmEngineDisplacement = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity _wmEngineDisplacement;
 }

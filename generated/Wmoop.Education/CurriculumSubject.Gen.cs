@@ -31,4 +31,36 @@ public partial class CurriculumSubject : global::Wmoop.Core.Entity
         item => item.Teaches.Remove(this));
 
     private global::Wmoop.Core.Links<Teacher>? _wmTaughtBy;
+
+    /// <summary>The study of quantity, structure, space and change. Individual <c>wmoop.education/Mathematics</c>.</summary>
+    public static CurriculumSubject Mathematics { get; } = new()
+    {
+        Id = "wmoop.education/Mathematics",
+        Name = "Mathematics",
+        IscedfField = "054 Mathematics and statistics",
+    };
+
+    /// <summary>The study of the Romanian language and its literature. Individual <c>wmoop.education/RomanianLanguage</c>.</summary>
+    public static CurriculumSubject RomanianLanguage { get; } = new()
+    {
+        Id = "wmoop.education/RomanianLanguage",
+        Name = "RomanianLanguage",
+        IscedfField = "023 Languages",
+    };
+
+    /// <summary>The study of living organisms and their vital processes. Individual <c>wmoop.education/Biology</c>.</summary>
+    public static CurriculumSubject Biology { get; } = new()
+    {
+        Id = "wmoop.education/Biology",
+        Name = "Biology",
+        IscedfField = "051 Biological and related sciences",
+    };
+
+    /// <summary>The study of organised sound, its theory, performance and history. Individual <c>wmoop.education/Music</c>.</summary>
+    public static CurriculumSubject Music { get; } = new()
+    {
+        Id = "wmoop.education/Music",
+        Name = "Music",
+        IscedfField = "021 Arts",
+    };
 }

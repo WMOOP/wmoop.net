@@ -37,4 +37,44 @@ public partial class ChemicalElement : ChemicalSubstance
         item => { if (ReferenceEquals(item.Element, this)) item.Element = null; });
 
     private global::Wmoop.Core.Links<Atom>? _wmAtoms;
+
+    /// <summary>The chemical element with atomic number 1, the lightest element. Individual <c>wmoop.chemistry/Hydrogen</c>.</summary>
+    public static ChemicalElement Hydrogen { get; } = new()
+    {
+        Id = "wmoop.chemistry/Hydrogen",
+        Name = "Hydrogen",
+        AtomicNumber = 1,
+        Symbol = "H",
+        StandardAtomicWeight = 1.008,
+    };
+
+    /// <summary>The chemical element with atomic number 6, the structural basis of organic chemistry. Individual <c>wmoop.chemistry/Carbon</c>.</summary>
+    public static ChemicalElement Carbon { get; } = new()
+    {
+        Id = "wmoop.chemistry/Carbon",
+        Name = "Carbon",
+        AtomicNumber = 6,
+        Symbol = "C",
+        StandardAtomicWeight = 12.011,
+    };
+
+    /// <summary>The chemical element with atomic number 8. Individual <c>wmoop.chemistry/Oxygen</c>.</summary>
+    public static ChemicalElement Oxygen { get; } = new()
+    {
+        Id = "wmoop.chemistry/Oxygen",
+        Name = "Oxygen",
+        AtomicNumber = 8,
+        Symbol = "O",
+        StandardAtomicWeight = 15.999,
+    };
+
+    /// <summary>The chemical element with atomic number 26, a transition metal (Latin ferrum). Individual <c>wmoop.chemistry/Iron</c>.</summary>
+    public static ChemicalElement Iron { get; } = new()
+    {
+        Id = "wmoop.chemistry/Iron",
+        Name = "Iron",
+        AtomicNumber = 26,
+        Symbol = "Fe",
+        StandardAtomicWeight = 55.845,
+    };
 }

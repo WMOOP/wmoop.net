@@ -14,4 +14,11 @@ namespace Wmoop.Music;
 public partial class Aerophone : MusicalInstrument
 {
     public new const string WmId = "wmoop.music/Aerophone";
+
+    /// <summary>An edge-blown woodwind aerophone sounded by directing air across an opening. Individual <c>wmoop.music/Flute</c>.</summary>
+    public static Aerophone Flute { get; } = new()
+    {
+        Id = "wmoop.music/Flute",
+        Name = "Flute",
+    };
 }

@@ -16,8 +16,118 @@ public partial class Planet : CelestialBody
     public new const string WmId = "wmoop.space/Planet";
 
     /// <summary>The time the planet takes to complete one orbit around the Sun (its sidereal period).</summary>
-    public required global::Wmoop.Core.Quantity OrbitalPeriod { get; init; }
+    public required global::Wmoop.Core.Quantity OrbitalPeriod
+    {
+        get => _wmOrbitalPeriod;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "d", "wmoop.core/Time", nameof(OrbitalPeriod));
+            _wmOrbitalPeriod = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity _wmOrbitalPeriod;
 
     /// <summary>The number of confirmed natural satellites in orbit around the planet.</summary>
-    public required global::Wmoop.Core.Quantity NumberOfMoons { get; init; }
+    public required global::Wmoop.Core.Quantity NumberOfMoons
+    {
+        get => _wmNumberOfMoons;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "one", "wmoop.core/Count", nameof(NumberOfMoons));
+            if (!(value.In("one") >= 0))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A planet cannot have a negative number of moons. [moons-nonneg: self.numberOfMoons >= 0]", nameof(NumberOfMoons));
+            _wmNumberOfMoons = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity _wmNumberOfMoons;
+
+    /// <summary>The smallest planet and the closest to the Sun. Individual <c>wmoop.space/Mercury</c>.</summary>
+    public static Planet Mercury { get; } = new()
+    {
+        Id = "wmoop.space/Mercury",
+        Name = "Mercury",
+        Mass = new global::Wmoop.Core.Quantity(3.3e+23, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(2439.7, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(88.0, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(0, "one"),
+    };
+
+    /// <summary>The second planet from the Sun and the hottest in the Solar System. Individual <c>wmoop.space/Venus</c>.</summary>
+    public static Planet Venus { get; } = new()
+    {
+        Id = "wmoop.space/Venus",
+        Name = "Venus",
+        Mass = new global::Wmoop.Core.Quantity(4.87e+24, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(6051.8, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(224.7, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(0, "one"),
+    };
+
+    /// <summary>The third planet from the Sun and the only known body to support life. Individual <c>wmoop.space/Earth</c>.</summary>
+    public static Planet Earth { get; } = new()
+    {
+        Id = "wmoop.space/Earth",
+        Name = "Earth",
+        Mass = new global::Wmoop.Core.Quantity(5.97e+24, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(6378.1, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(365.2, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(1, "one"),
+    };
+
+    /// <summary>The fourth planet from the Sun, a cold desert world often called the Red Planet. Individual <c>wmoop.space/Mars</c>.</summary>
+    public static Planet Mars { get; } = new()
+    {
+        Id = "wmoop.space/Mars",
+        Name = "Mars",
+        Mass = new global::Wmoop.Core.Quantity(6.42e+23, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(3396.2, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(687.0, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(2, "one"),
+    };
+
+    /// <summary>The fifth and largest planet in the Solar System, a gas giant. Individual <c>wmoop.space/Jupiter</c>.</summary>
+    public static Planet Jupiter { get; } = new()
+    {
+        Id = "wmoop.space/Jupiter",
+        Name = "Jupiter",
+        Mass = new global::Wmoop.Core.Quantity(1.898e+27, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(71492, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(4331, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(95, "one"),
+    };
+
+    /// <summary>The sixth planet from the Sun, a gas giant famous for its ring system. Individual <c>wmoop.space/Saturn</c>.</summary>
+    public static Planet Saturn { get; } = new()
+    {
+        Id = "wmoop.space/Saturn",
+        Name = "Saturn",
+        Mass = new global::Wmoop.Core.Quantity(5.68e+26, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(60268, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(10747, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(274, "one"),
+    };
+
+    /// <summary>The seventh planet from the Sun, an ice giant that rotates on its side. Individual <c>wmoop.space/Uranus</c>.</summary>
+    public static Planet Uranus { get; } = new()
+    {
+        Id = "wmoop.space/Uranus",
+        Name = "Uranus",
+        Mass = new global::Wmoop.Core.Quantity(8.68e+25, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(25559, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(30589, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(28, "one"),
+    };
+
+    /// <summary>The eighth and most distant planet from the Sun, an ice giant. Individual <c>wmoop.space/Neptune</c>.</summary>
+    public static Planet Neptune { get; } = new()
+    {
+        Id = "wmoop.space/Neptune",
+        Name = "Neptune",
+        Mass = new global::Wmoop.Core.Quantity(1.02e+26, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(24764, "km"),
+        OrbitalPeriod = new global::Wmoop.Core.Quantity(59800, "d"),
+        NumberOfMoons = new global::Wmoop.Core.Quantity(16, "one"),
+    };
 }

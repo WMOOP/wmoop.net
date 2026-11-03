@@ -16,7 +16,17 @@ public partial class PlanetarySystem : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.space/PlanetarySystem";
 
     /// <summary>The number of bodies in the system classified as planets.</summary>
-    public global::Wmoop.Core.Quantity? NumberOfPlanets { get; init; }
+    public global::Wmoop.Core.Quantity? NumberOfPlanets
+    {
+        get => _wmNumberOfPlanets;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "one", "wmoop.core/Count", nameof(NumberOfPlanets));
+            _wmNumberOfPlanets = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmNumberOfPlanets;
 
     /// <summary>Inverse of <c>wmoop.space/CelestialBody#partOfSystem</c>.</summary>
     public global::Wmoop.Core.Links<CelestialBody> Members => _wmMembers ??= new(
@@ -24,4 +34,12 @@ public partial class PlanetarySystem : global::Wmoop.Core.Entity
         item => { if (ReferenceEquals(item.PartOfSystem, this)) item.PartOfSystem = null; });
 
     private global::Wmoop.Core.Links<CelestialBody>? _wmMembers;
+
+    /// <summary>The planetary system of the Sun, containing the eight planets, the dwarf planets and smaller bodies bound to it. Individual <c>wmoop.space/SolarSystem</c>.</summary>
+    public static PlanetarySystem SolarSystem { get; } = new()
+    {
+        Id = "wmoop.space/SolarSystem",
+        Name = "Solar System",
+        NumberOfPlanets = new global::Wmoop.Core.Quantity(8, "one"),
+    };
 }

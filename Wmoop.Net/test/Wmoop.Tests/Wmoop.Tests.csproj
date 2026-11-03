@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <!--
-    Dependency-free conformance checks. This is a plain console app whose exit code
-    is non-zero on failure (so CI can gate on it), using a tiny hand-rolled assert
-    helper instead of xUnit/NUnit. That keeps the whole solution buildable and
-    testable fully offline (invariant #6: machine-checkable Definition of Done).
+    Runs the shared conformance vectors of wmoop.doc (external/wmoop.doc/conformance/suite.json)
+    against the generated classes. A plain console app whose exit code is non-zero on failure (so
+    CI can gate on it), with no test framework and no package, so the whole solution builds and
+    tests fully offline (invariant #6: machine-checkable Definition of Done).
   -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -15,10 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\generated\Wmoop.Core\Wmoop.Core.csproj" />
-    <ProjectReference Include="..\..\..\generated\Wmoop.Nature\Wmoop.Nature.csproj" />
-    <ProjectReference Include="..\..\..\generated\Wmoop.Transport\Wmoop.Transport.csproj" />
-    <ProjectReference Include="..\..\..\generated\Wmoop.Geography\Wmoop.Geography.csproj" />
+    <!-- Every generated project, so a vector about any domain finds its types by WmId. -->
+    <ProjectReference Include="..\..\..\generated\*\*.csproj" />
   </ItemGroup>
 
 </Project>

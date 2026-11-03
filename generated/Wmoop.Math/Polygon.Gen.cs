@@ -16,7 +16,18 @@ public abstract partial class Polygon : GeometricShape
     public new const string WmId = "wmoop.math/Polygon";
 
     /// <summary>The number of straight sides bounding the polygon (equal to its number of vertices).</summary>
-    public required long SideCount { get; init; }
+    public required virtual long SideCount
+    {
+        get => _wmSideCount;
+        init
+        {
+            if (!(value >= 3))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A polygon has at least three sides. [at-least-three-sides: self.sideCount >= 3]", nameof(SideCount));
+            _wmSideCount = value;
+        }
+    }
+
+    private long _wmSideCount;
 
     /// <summary>Whether the polygon is both equilateral (all sides equal) and equiangular (all interior angles equal).</summary>
     public required bool IsRegular { get; init; }
