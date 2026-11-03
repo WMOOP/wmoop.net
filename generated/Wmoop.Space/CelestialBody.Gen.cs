@@ -16,10 +16,32 @@ public abstract partial class CelestialBody : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.space/CelestialBody";
 
     /// <summary>The total amount of matter in the body.</summary>
-    public required global::Wmoop.Core.Quantity Mass { get; init; }
+    public required global::Wmoop.Core.Quantity Mass
+    {
+        get => _wmMass;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "kg", "wmoop.core/Mass", nameof(Mass));
+            if (!(value.In("kg") > 0))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A celestial body must have a positive mass. [positive-mass: self.mass > 0]", nameof(Mass));
+            _wmMass = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity _wmMass;
 
     /// <summary>The radius of the body measured at its equator.</summary>
-    public global::Wmoop.Core.Quantity? EquatorialRadius { get; init; }
+    public global::Wmoop.Core.Quantity? EquatorialRadius
+    {
+        get => _wmEquatorialRadius;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "km", "wmoop.core/Length", nameof(EquatorialRadius));
+            _wmEquatorialRadius = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmEquatorialRadius;
 
     /// <summary>partOfSystem</summary>
     public PlanetarySystem? PartOfSystem

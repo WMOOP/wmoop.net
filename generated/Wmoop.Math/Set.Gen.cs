@@ -17,4 +17,13 @@ public partial class Set : Collection
 
     /// <summary>Whether the set has finitely many members.</summary>
     public required bool IsFinite { get; init; }
+
+    /// <summary>The unique set with no members (∅); it is empty and finite. Individual <c>wmoop.math/EmptySet</c>.</summary>
+    public static Set EmptySet { get; } = new()
+    {
+        Id = "wmoop.math/EmptySet",
+        Name = "EmptySet",
+        IsEmpty = true,
+        IsFinite = true,
+    };
 }

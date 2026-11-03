@@ -16,10 +16,31 @@ public abstract partial class Vehicle : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.transport/Vehicle";
 
     /// <summary>Number of road wheels in contact with the ground.</summary>
-    public required long WheelCount { get; init; }
+    public required long WheelCount
+    {
+        get => _wmWheelCount;
+        init
+        {
+            if (!(value >= 0))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "A vehicle cannot have a negative wheel count. [wheels-nonneg: self.wheelCount >= 0]", nameof(WheelCount));
+            _wmWheelCount = value;
+        }
+    }
+
+    private long _wmWheelCount;
 
     /// <summary>The maximum design speed the vehicle can sustain on level ground.</summary>
-    public global::Wmoop.Core.Quantity? MaxSpeed { get; init; }
+    public global::Wmoop.Core.Quantity? MaxSpeed
+    {
+        get => _wmMaxSpeed;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "km/h", "wmoop.core/Speed", nameof(MaxSpeed));
+            _wmMaxSpeed = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmMaxSpeed;
 
     /// <summary>Inverse of <c>wmoop.transport/Owner#owns</c>.</summary>
     public global::Wmoop.Core.Links<Owner> OwnedBy => _wmOwnedBy ??= new(

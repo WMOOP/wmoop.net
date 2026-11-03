@@ -16,7 +16,18 @@ public abstract partial class Argument : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.philosophy/Argument";
 
     /// <summary>The number of premises the argument offers (the arity of its hasPremise relation), exposed as a constrainable scalar.</summary>
-    public required long PremiseCount { get; init; }
+    public required long PremiseCount
+    {
+        get => _wmPremiseCount;
+        init
+        {
+            if (!(value >= 1))
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-INVARIANT-FAILED", "An argument must offer at least one premise. [premise-count-positive: self.premiseCount >= 1]", nameof(PremiseCount));
+            _wmPremiseCount = value;
+        }
+    }
+
+    private long _wmPremiseCount;
 
     /// <summary>A proposition offered in support of the conclusion.</summary>
     public global::Wmoop.Core.Links<Proposition> HasPremise => _wmHasPremise ??= new(

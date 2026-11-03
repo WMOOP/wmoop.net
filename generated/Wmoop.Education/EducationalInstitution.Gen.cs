@@ -15,16 +15,19 @@ public abstract partial class EducationalInstitution : global::Wmoop.Org.Organiz
 {
     public new const string WmId = "wmoop.education/EducationalInstitution";
 
-    private IReadOnlyList<ISCEDLevel> _wmIscedLevels = Array.Empty<ISCEDLevel>();
-
     /// <summary>The ISCED levels of education the institution provides.</summary>
     public required IReadOnlyList<ISCEDLevel> IscedLevels
     {
         get => _wmIscedLevels;
-        init => _wmIscedLevels = value is { Count: > 0 }
-            ? value
-            : throw new ArgumentException("IscedLevels needs at least one value.", nameof(IscedLevels));
+        init
+        {
+            if (value is not { Count: > 0 })
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-CARDINALITY", "IscedLevels needs at least one value.", nameof(IscedLevels));
+            _wmIscedLevels = value;
+        }
     }
+
+    private IReadOnlyList<ISCEDLevel> _wmIscedLevels = Array.Empty<ISCEDLevel>();
 
     /// <summary>The building(s) the institution occupies.</summary>
     public global::Wmoop.Core.Links<SchoolBuilding> HousedIn => _wmHousedIn ??= new(

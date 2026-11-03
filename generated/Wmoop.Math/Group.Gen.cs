@@ -15,9 +15,33 @@ public partial class Group : AlgebraicStructure
 {
     public new const string WmId = "wmoop.math/Group";
 
+    // Invariant closure waits for WMX (ADR 0002): forall a, b in self.underlyingSet: (a · b) in self.underlyingSet
+    // Invariant associativity waits for WMX (ADR 0002): forall a, b, c in self.underlyingSet: (a · b) · c == a · (b · c)
+    // Invariant identity waits for WMX (ADR 0002): exists e in self.underlyingSet: forall a in self.underlyingSet: (e · a == a) and (a · e == a)
+    // Invariant inverse waits for WMX (ADR 0002): forall a in self.underlyingSet: exists b in self.underlyingSet: (a · b == e) and (b · a == e)
+
     /// <summary>The order of the group — the number of elements in a finite group; omitted for an infinite group.</summary>
-    public global::Wmoop.Core.Quantity? Order { get; init; }
+    public global::Wmoop.Core.Quantity? Order
+    {
+        get => _wmOrder;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "one", "wmoop.core/Count", nameof(Order));
+            _wmOrder = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmOrder;
 
     /// <summary>Whether the group's binary operation is commutative (a · b = b · a for all a, b).</summary>
     public required bool IsAbelian { get; init; }
+
+    /// <summary>The trivial group ({e}, ·): the one-element group whose only element is the identity; it is abelian and has order 1. Individual <c>wmoop.math/TrivialGroup</c>.</summary>
+    public static Group TrivialGroup { get; } = new()
+    {
+        Id = "wmoop.math/TrivialGroup",
+        Name = "TrivialGroup",
+        Order = new global::Wmoop.Core.Quantity(1, "one"),
+        IsAbelian = true,
+    };
 }

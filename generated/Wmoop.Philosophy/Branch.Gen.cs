@@ -24,4 +24,44 @@ public partial class Branch : global::Wmoop.Core.Entity
         item => { if (ReferenceEquals(item.AddressesBranch, this)) item.AddressesBranch = null; });
 
     private global::Wmoop.Core.Links<PhilosophicalPosition>? _wmAddressedBy;
+
+    /// <summary>The study of what there is and the fundamental nature of reality: being, objects, properties, causation, time and possibility. Individual <c>wmoop.philosophy/Metaphysics</c>.</summary>
+    public static Branch Metaphysics { get; } = new()
+    {
+        Id = "wmoop.philosophy/Metaphysics",
+        Name = "Metaphysics",
+        CentralQuestion = "What is there, and what is its fundamental nature?",
+    };
+
+    /// <summary>The study of knowledge: its nature, sources, limits and justification, and the difference between knowledge and mere belief. Individual <c>wmoop.philosophy/Epistemology</c>.</summary>
+    public static Branch Epistemology { get; } = new()
+    {
+        Id = "wmoop.philosophy/Epistemology",
+        Name = "Epistemology",
+        CentralQuestion = "What is knowledge, and what can we know?",
+    };
+
+    /// <summary>The study of right action, the good, and how one ought to live. Individual <c>wmoop.philosophy/Ethics</c>.</summary>
+    public static Branch Ethics { get; } = new()
+    {
+        Id = "wmoop.philosophy/Ethics",
+        Name = "Ethics",
+        CentralQuestion = "What ought one to do, and what is a good life?",
+    };
+
+    /// <summary>The study of valid inference and the forms of correct reasoning. Its status as a branch of philosophy, rather than of mathematics, is itself debated. Individual <c>wmoop.philosophy/Logic</c>.</summary>
+    public static Branch Logic { get; } = new()
+    {
+        Id = "wmoop.philosophy/Logic",
+        Name = "Logic",
+        CentralQuestion = "What distinguishes a valid inference from an invalid one?",
+    };
+
+    /// <summary>The study of beauty, taste and the nature and value of art and aesthetic experience. Individual <c>wmoop.philosophy/Aesthetics</c>.</summary>
+    public static Branch Aesthetics { get; } = new()
+    {
+        Id = "wmoop.philosophy/Aesthetics",
+        Name = "Aesthetics",
+        CentralQuestion = "What is beauty, and what is the nature of art?",
+    };
 }

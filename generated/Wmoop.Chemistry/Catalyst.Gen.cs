@@ -18,6 +18,7 @@ public partial class Catalyst : global::Wmoop.Core.Role
 
     public override global::Wmoop.Core.ConceptId RoleType => WmId;
     public override string PlayedBy => WmPlayedBy;
+    public override int? MaxPerPlayer => 1;
 
     /// <summary>catalyses</summary>
     public global::Wmoop.Core.Links<ChemicalReaction> Catalyses => _wmCatalyses ??= new(

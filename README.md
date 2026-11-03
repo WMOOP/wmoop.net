@@ -42,7 +42,8 @@ architecture end to end.
   - **Visitor** (where behaviour lives when data is generated);
   - **Specification** (composable rules / queries);
   - **Builder**, **Strategy**, **Registry/Flyweight**.
-- **Dependency-free tests** and two runnable demos.
+- **The shared conformance vectors** of `wmoop.doc`, run by `Wmoop.Tests`: the same vectors
+  `wmoop.py` runs, so the two bindings provably agree. Plus two runnable demos.
 
 ## Layout
 
@@ -64,7 +65,7 @@ Wmoop.Net/
 │   ├── Wmoop.Demo/            # cross-domain roles + polymorphism walkthrough
 │   └── Wmoop.Patterns.Demo/   # one runnable section per design pattern, self-checking
 └── test/
-    └── Wmoop.Tests/           # dependency-free checks (non-zero exit on failure)
+    └── Wmoop.Tests/           # runs the shared conformance vectors (non-zero exit on failure)
 ```
 
 ## Build & run
@@ -80,12 +81,30 @@ dotnet build Wmoop.Net/Wmoop.Net.sln           # patterns, demos, tests
 dotnet run --project Wmoop.Net/src/Wmoop.Demo
 dotnet run --project Wmoop.Net/src/Wmoop.Patterns.Demo
 
-# run the tests (exit code is non-zero on failure, so CI can gate on it)
+# run the conformance vectors (exit code is non-zero on failure, so CI can gate on it)
 dotnet run --project Wmoop.Net/test/Wmoop.Tests
 ```
 
 If you only have .NET 9/10/11 installed, prefix with `DOTNET_ROLL_FORWARD=LatestMajor` (bash) or
 `$env:DOTNET_ROLL_FORWARD='LatestMajor'` (PowerShell).
+
+## Conformance
+
+The checks are not written here. They are the shared conformance vectors of
+[`wmoop.doc/conformance`](https://github.com/WMOOP/wmoop.doc/tree/main/conformance), written once
+as data and run by every binding. `Wmoop.Tests` reads the bundle
+`external/wmoop.doc/conformance/suite.json` (clone with `--recurse-submodules`), and works by
+reflection:
+
+- A model type resolves through the generated `WmId` constant.
+- A model name such as `wheelCount` matches the member `WheelCount`.
+- An error matches by its registry code (`IWmoopError.Code`).
+- C# rejects a missing `required` member or an abstract class at compile time. The runner reports
+  those from the declarations as the model's `WM-REQUIRED-MISSING` and `WM-ABSTRACT-INSTANTIATION`.
+
+A `pending` vector describes a rule the model has and no binding enforces yet. It is reported but
+does not fail the run. Because the vectors are pinned with the model, a regeneration that brings new
+vectors also runs them. To add or change a check, add a vector in `wmoop.doc`, not a test here.
 
 ## Generated binding
 

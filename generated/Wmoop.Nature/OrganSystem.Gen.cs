@@ -21,4 +21,39 @@ public partial class OrganSystem : global::Wmoop.Core.Entity
         item => item.PartOfSystem.Remove(this));
 
     private global::Wmoop.Core.Links<Organ>? _wmHasOrgan;
+
+    /// <summary>The system of heart and blood vessels that circulates blood around the body. Individual <c>wmoop.nature/CardiovascularSystem</c>.</summary>
+    public static OrganSystem CardiovascularSystem { get; } = new()
+    {
+        Id = "wmoop.nature/CardiovascularSystem",
+        Name = "CardiovascularSystem",
+    };
+
+    /// <summary>The system of brain, spinal cord and nerves that detects stimuli and coordinates responses. Individual <c>wmoop.nature/NervousSystem</c>.</summary>
+    public static OrganSystem NervousSystem { get; } = new()
+    {
+        Id = "wmoop.nature/NervousSystem",
+        Name = "NervousSystem",
+    };
+
+    /// <summary>The system of airways and lungs that takes in oxygen and expels carbon dioxide. Individual <c>wmoop.nature/RespiratorySystem</c>.</summary>
+    public static OrganSystem RespiratorySystem { get; } = new()
+    {
+        Id = "wmoop.nature/RespiratorySystem",
+        Name = "RespiratorySystem",
+    };
+
+    /// <summary>The system that ingests, breaks down and absorbs food and eliminates waste. Individual <c>wmoop.nature/DigestiveSystem</c>.</summary>
+    public static OrganSystem DigestiveSystem { get; } = new()
+    {
+        Id = "wmoop.nature/DigestiveSystem",
+        Name = "DigestiveSystem",
+    };
+
+    /// <summary>The system of kidneys and urinary tract that filters blood and excretes urine. Individual <c>wmoop.nature/UrinarySystem</c>.</summary>
+    public static OrganSystem UrinarySystem { get; } = new()
+    {
+        Id = "wmoop.nature/UrinarySystem",
+        Name = "UrinarySystem",
+    };
 }

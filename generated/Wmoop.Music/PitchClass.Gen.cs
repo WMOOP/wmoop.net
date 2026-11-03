@@ -21,4 +21,88 @@ public partial class PitchClass : global::Wmoop.Core.Entity
         item => { if (ReferenceEquals(item.SoundsPitchClass, this)) item.SoundsPitchClass = null; });
 
     private global::Wmoop.Core.Links<NoteOccurrence>? _wmSoundedIn;
+
+    /// <summary>The pitch class C (MIDI note 0, 12, …). Individual <c>wmoop.music/PitchC</c>.</summary>
+    public static PitchClass PitchC { get; } = new()
+    {
+        Id = "wmoop.music/PitchC",
+        Name = "C",
+    };
+
+    /// <summary>The pitch class C sharp / D flat. Individual <c>wmoop.music/PitchCSharp</c>.</summary>
+    public static PitchClass PitchCSharp { get; } = new()
+    {
+        Id = "wmoop.music/PitchCSharp",
+        Name = "C#",
+    };
+
+    /// <summary>The pitch class D. Individual <c>wmoop.music/PitchD</c>.</summary>
+    public static PitchClass PitchD { get; } = new()
+    {
+        Id = "wmoop.music/PitchD",
+        Name = "D",
+    };
+
+    /// <summary>The pitch class D sharp / E flat. Individual <c>wmoop.music/PitchDSharp</c>.</summary>
+    public static PitchClass PitchDSharp { get; } = new()
+    {
+        Id = "wmoop.music/PitchDSharp",
+        Name = "D#",
+    };
+
+    /// <summary>The pitch class E. Individual <c>wmoop.music/PitchE</c>.</summary>
+    public static PitchClass PitchE { get; } = new()
+    {
+        Id = "wmoop.music/PitchE",
+        Name = "E",
+    };
+
+    /// <summary>The pitch class F. Individual <c>wmoop.music/PitchF</c>.</summary>
+    public static PitchClass PitchF { get; } = new()
+    {
+        Id = "wmoop.music/PitchF",
+        Name = "F",
+    };
+
+    /// <summary>The pitch class F sharp / G flat. Individual <c>wmoop.music/PitchFSharp</c>.</summary>
+    public static PitchClass PitchFSharp { get; } = new()
+    {
+        Id = "wmoop.music/PitchFSharp",
+        Name = "F#",
+    };
+
+    /// <summary>The pitch class G. Individual <c>wmoop.music/PitchG</c>.</summary>
+    public static PitchClass PitchG { get; } = new()
+    {
+        Id = "wmoop.music/PitchG",
+        Name = "G",
+    };
+
+    /// <summary>The pitch class G sharp / A flat. Individual <c>wmoop.music/PitchGSharp</c>.</summary>
+    public static PitchClass PitchGSharp { get; } = new()
+    {
+        Id = "wmoop.music/PitchGSharp",
+        Name = "G#",
+    };
+
+    /// <summary>The pitch class A; A4 is the 440 Hz tuning reference (ISO 16). Individual <c>wmoop.music/PitchA</c>.</summary>
+    public static PitchClass PitchA { get; } = new()
+    {
+        Id = "wmoop.music/PitchA",
+        Name = "A",
+    };
+
+    /// <summary>The pitch class A sharp / B flat. Individual <c>wmoop.music/PitchASharp</c>.</summary>
+    public static PitchClass PitchASharp { get; } = new()
+    {
+        Id = "wmoop.music/PitchASharp",
+        Name = "A#",
+    };
+
+    /// <summary>The pitch class B. Individual <c>wmoop.music/PitchB</c>.</summary>
+    public static PitchClass PitchB { get; } = new()
+    {
+        Id = "wmoop.music/PitchB",
+        Name = "B",
+    };
 }

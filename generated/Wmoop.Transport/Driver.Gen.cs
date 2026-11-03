@@ -18,20 +18,24 @@ public partial class Driver : global::Wmoop.Core.Role
 
     public override global::Wmoop.Core.ConceptId RoleType => WmId;
     public override string PlayedBy => WmPlayedBy;
+    public override int? MaxPerPlayer => 1;
 
     /// <summary>The identifier printed on the holder's driving licence.</summary>
     public required string LicenceNumber { get; init; }
-
-    private IReadOnlyList<LicenceCategory> _wmLicenceCategories = Array.Empty<LicenceCategory>();
 
     /// <summary>The EU licence categories the holder is entitled to drive.</summary>
     public required IReadOnlyList<LicenceCategory> LicenceCategories
     {
         get => _wmLicenceCategories;
-        init => _wmLicenceCategories = value is { Count: > 0 }
-            ? value
-            : throw new ArgumentException("LicenceCategories needs at least one value.", nameof(LicenceCategories));
+        init
+        {
+            if (value is not { Count: > 0 })
+                throw new global::Wmoop.Core.WmoopArgumentException("WM-CARDINALITY", "LicenceCategories needs at least one value.", nameof(LicenceCategories));
+            _wmLicenceCategories = value;
+        }
     }
+
+    private IReadOnlyList<LicenceCategory> _wmLicenceCategories = Array.Empty<LicenceCategory>();
 
     /// <summary>The date on which the licence ceases to be administratively valid.</summary>
     public DateOnly? LicenceExpiry { get; init; }

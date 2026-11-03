@@ -14,4 +14,13 @@ namespace Wmoop.Space;
 public partial class DwarfPlanet : CelestialBody
 {
     public new const string WmId = "wmoop.space/DwarfPlanet";
+
+    /// <summary>A dwarf planet in the Kuiper belt. Classified as the ninth planet from 1930 until 2006, when the IAU adopted the planet/dwarf-planet distinction; Pluto shares its orbital neighbourhood with other Kuiper-belt objects and so is a dwarf planet, not a planet. It has five known moons and an orbital period of about 90,560 days. Individual <c>wmoop.space/Pluto</c>.</summary>
+    public static DwarfPlanet Pluto { get; } = new()
+    {
+        Id = "wmoop.space/Pluto",
+        Name = "Pluto",
+        Mass = new global::Wmoop.Core.Quantity(1.3e+22, "kg"),
+        EquatorialRadius = new global::Wmoop.Core.Quantity(1188.3, "km"),
+    };
 }

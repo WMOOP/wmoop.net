@@ -17,4 +17,36 @@ public partial class Interval : global::Wmoop.Core.Entity
 
     /// <summary>The width of the interval in semitones (e.g. 7 for a perfect fifth, 12 for an octave).</summary>
     public required long Semitones { get; init; }
+
+    /// <summary>The interval of zero semitones — two notes of the same pitch. Individual <c>wmoop.music/PerfectUnison</c>.</summary>
+    public static Interval PerfectUnison { get; } = new()
+    {
+        Id = "wmoop.music/PerfectUnison",
+        Name = "PerfectUnison",
+        Semitones = 0,
+    };
+
+    /// <summary>The interval of four semitones. Individual <c>wmoop.music/MajorThird</c>.</summary>
+    public static Interval MajorThird { get; } = new()
+    {
+        Id = "wmoop.music/MajorThird",
+        Name = "MajorThird",
+        Semitones = 4,
+    };
+
+    /// <summary>The interval of seven semitones. Individual <c>wmoop.music/PerfectFifth</c>.</summary>
+    public static Interval PerfectFifth { get; } = new()
+    {
+        Id = "wmoop.music/PerfectFifth",
+        Name = "PerfectFifth",
+        Semitones = 7,
+    };
+
+    /// <summary>The interval of twelve semitones, spanning one full pitch-class cycle. Individual <c>wmoop.music/Octave</c>.</summary>
+    public static Interval Octave { get; } = new()
+    {
+        Id = "wmoop.music/Octave",
+        Name = "Octave",
+        Semitones = 12,
+    };
 }

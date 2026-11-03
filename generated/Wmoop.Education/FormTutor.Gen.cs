@@ -18,6 +18,7 @@ public partial class FormTutor : global::Wmoop.Core.Role
 
     public override global::Wmoop.Core.ConceptId RoleType => WmId;
     public override string PlayedBy => WmPlayedBy;
+    public override int? MaxPerPlayer => 1;
 
     /// <summary>tutors</summary>
     public StudentClass? Tutors

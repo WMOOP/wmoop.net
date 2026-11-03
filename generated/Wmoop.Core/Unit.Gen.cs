@@ -26,4 +26,158 @@ public partial class Unit : global::Wmoop.Core.Entity
 
     /// <summary>Additive offset applied after the factor when converting to the canonical unit (`toCanonical.offset`; e.g. 273.15 for °C → K).</summary>
     public double Offset { get; init; } = 0;
+
+    /// <summary>The unit one — the coherent unit of a quantity of dimension one (Count). Individual <c>wmoop.core/One</c>.</summary>
+    public static Unit One { get; } = new()
+    {
+        Id = "wmoop.core/One",
+        Name = "one",
+        Symbol = "one",
+        QuantityKind = "wmoop.core/Count",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Metre — the SI base and canonical unit of Length. Individual <c>wmoop.core/Metre</c>.</summary>
+    public static Unit Metre { get; } = new()
+    {
+        Id = "wmoop.core/Metre",
+        Name = "m",
+        Symbol = "m",
+        QuantityKind = "wmoop.core/Length",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Kilometre — a decimal multiple of the metre, used for planetary radii and road distances. Individual <c>wmoop.core/Kilometre</c>.</summary>
+    public static Unit Kilometre { get; } = new()
+    {
+        Id = "wmoop.core/Kilometre",
+        Name = "km",
+        Symbol = "km",
+        QuantityKind = "wmoop.core/Length",
+        Factor = 1000,
+        Offset = 0,
+    };
+
+    /// <summary>Kilogram — the SI base and canonical unit of Mass. Individual <c>wmoop.core/Kilogram</c>.</summary>
+    public static Unit Kilogram { get; } = new()
+    {
+        Id = "wmoop.core/Kilogram",
+        Name = "kg",
+        Symbol = "kg",
+        QuantityKind = "wmoop.core/Mass",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Second — the SI base and canonical unit of Time. Individual <c>wmoop.core/Second</c>.</summary>
+    public static Unit Second { get; } = new()
+    {
+        Id = "wmoop.core/Second",
+        Name = "s",
+        Symbol = "s",
+        QuantityKind = "wmoop.core/Time",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Day — a non-SI unit of Time accepted for use with the SI, used for orbital periods. Individual <c>wmoop.core/Day</c>.</summary>
+    public static Unit Day { get; } = new()
+    {
+        Id = "wmoop.core/Day",
+        Name = "d",
+        Symbol = "d",
+        QuantityKind = "wmoop.core/Time",
+        Factor = 86400,
+        Offset = 0,
+    };
+
+    /// <summary>Metre per second — the coherent SI (canonical) unit of Speed. Individual <c>wmoop.core/MetrePerSecond</c>.</summary>
+    public static Unit MetrePerSecond { get; } = new()
+    {
+        Id = "wmoop.core/MetrePerSecond",
+        Name = "m_per_s",
+        Symbol = "m/s",
+        QuantityKind = "wmoop.core/Speed",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Kilometre per hour — a non-coherent unit of Speed used on road vehicles. Individual <c>wmoop.core/KilometrePerHour</c>.</summary>
+    public static Unit KilometrePerHour { get; } = new()
+    {
+        Id = "wmoop.core/KilometrePerHour",
+        Name = "km_per_h",
+        Symbol = "km/h",
+        QuantityKind = "wmoop.core/Speed",
+        Factor = 0.2777777777777778,
+        Offset = 0,
+    };
+
+    /// <summary>Square metre — the coherent SI (canonical) unit of Area. Individual <c>wmoop.core/SquareMetre</c>.</summary>
+    public static Unit SquareMetre { get; } = new()
+    {
+        Id = "wmoop.core/SquareMetre",
+        Name = "m2",
+        Symbol = "m2",
+        QuantityKind = "wmoop.core/Area",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Cubic metre — the coherent SI (canonical) unit of Volume. Individual <c>wmoop.core/CubicMetre</c>.</summary>
+    public static Unit CubicMetre { get; } = new()
+    {
+        Id = "wmoop.core/CubicMetre",
+        Name = "m3",
+        Symbol = "m3",
+        QuantityKind = "wmoop.core/Volume",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Cubic centimetre — a sub-multiple unit of Volume used for engine displacement. Individual <c>wmoop.core/CubicCentimetre</c>.</summary>
+    public static Unit CubicCentimetre { get; } = new()
+    {
+        Id = "wmoop.core/CubicCentimetre",
+        Name = "cm3",
+        Symbol = "cm3",
+        QuantityKind = "wmoop.core/Volume",
+        Factor = 1e-06,
+        Offset = 0,
+    };
+
+    /// <summary>Kelvin — the SI base and canonical unit of thermodynamic Temperature. Individual <c>wmoop.core/Kelvin</c>.</summary>
+    public static Unit Kelvin { get; } = new()
+    {
+        Id = "wmoop.core/Kelvin",
+        Name = "K",
+        Symbol = "K",
+        QuantityKind = "wmoop.core/Temperature",
+        Factor = 1,
+        Offset = 0,
+    };
+
+    /// <summary>Degree Celsius — a unit of Temperature offset from Kelvin by 273.15. Individual <c>wmoop.core/DegreeCelsius</c>.</summary>
+    public static Unit DegreeCelsius { get; } = new()
+    {
+        Id = "wmoop.core/DegreeCelsius",
+        Name = "degC",
+        Symbol = "degC",
+        QuantityKind = "wmoop.core/Temperature",
+        Factor = 1,
+        Offset = 273.15,
+    };
+
+    /// <summary>Radian — the coherent SI (canonical) unit of plane Angle. Individual <c>wmoop.core/Radian</c>.</summary>
+    public static Unit Radian { get; } = new()
+    {
+        Id = "wmoop.core/Radian",
+        Name = "rad",
+        Symbol = "rad",
+        QuantityKind = "wmoop.core/Angle",
+        Factor = 1,
+        Offset = 0,
+    };
 }

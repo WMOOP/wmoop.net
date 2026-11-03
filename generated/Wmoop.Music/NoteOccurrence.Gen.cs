@@ -16,7 +16,17 @@ public partial class NoteOccurrence : global::Wmoop.Core.Entity
     public const string WmId = "wmoop.music/NoteOccurrence";
 
     /// <summary>How long the note sounds.</summary>
-    public global::Wmoop.Core.Quantity? Duration { get; init; }
+    public global::Wmoop.Core.Quantity? Duration
+    {
+        get => _wmDuration;
+        init
+        {
+            global::Wmoop.Core.Units.Require(value, "s", "wmoop.core/Time", nameof(Duration));
+            _wmDuration = value;
+        }
+    }
+
+    private global::Wmoop.Core.Quantity? _wmDuration;
 
     /// <summary>The pitch class this occurrence sounds.</summary>
     public PitchClass? SoundsPitchClass

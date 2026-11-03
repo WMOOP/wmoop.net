@@ -41,4 +41,142 @@ public partial class QuantityKind : global::Wmoop.Core.Entity
 
     /// <summary>For a derived kind, its dimension formula over base kinds (e.g. Speed = Length · Time⁻¹). Absent for a base kind.</summary>
     public string? Derivation { get; init; }
+
+    /// <summary>A dimensionless cardinal count of discrete entities. Individual <c>wmoop.core/Count</c>.</summary>
+    public static QuantityKind Count { get; } = new()
+    {
+        Id = "wmoop.core/Count",
+        Name = "Count",
+        DimL = 0,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/One",
+    };
+
+    /// <summary>Extent in one spatial dimension. SI base quantity L. Individual <c>wmoop.core/Length</c>.</summary>
+    public static QuantityKind Length { get; } = new()
+    {
+        Id = "wmoop.core/Length",
+        Name = "Length",
+        DimL = 1,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/Metre",
+    };
+
+    /// <summary>The amount of matter in a body. SI base quantity M. Individual <c>wmoop.core/Mass</c>.</summary>
+    public static QuantityKind Mass { get; } = new()
+    {
+        Id = "wmoop.core/Mass",
+        Name = "Mass",
+        DimL = 0,
+        DimM = 1,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/Kilogram",
+    };
+
+    /// <summary>Duration between events. SI base quantity T. Individual <c>wmoop.core/Time</c>.</summary>
+    public static QuantityKind Time { get; } = new()
+    {
+        Id = "wmoop.core/Time",
+        Name = "Time",
+        DimL = 0,
+        DimM = 0,
+        DimT = 1,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/Second",
+    };
+
+    /// <summary>Rate of change of position; a derived kind, Length per Time. Individual <c>wmoop.core/Speed</c>.</summary>
+    public static QuantityKind Speed { get; } = new()
+    {
+        Id = "wmoop.core/Speed",
+        Name = "Speed",
+        DimL = 1,
+        DimM = 0,
+        DimT = -1,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/MetrePerSecond",
+        Derivation = "Length · Time⁻¹",
+    };
+
+    /// <summary>Extent of a two-dimensional surface; a derived kind, Length squared. Individual <c>wmoop.core/Area</c>.</summary>
+    public static QuantityKind Area { get; } = new()
+    {
+        Id = "wmoop.core/Area",
+        Name = "Area",
+        DimL = 2,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/SquareMetre",
+        Derivation = "Length²",
+    };
+
+    /// <summary>Extent of a three-dimensional region of space; a derived kind, Length cubed. Individual <c>wmoop.core/Volume</c>.</summary>
+    public static QuantityKind Volume { get; } = new()
+    {
+        Id = "wmoop.core/Volume",
+        Name = "Volume",
+        DimL = 3,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/CubicMetre",
+        Derivation = "Length³",
+    };
+
+    /// <summary>Thermodynamic temperature. SI base quantity Θ. Individual <c>wmoop.core/Temperature</c>.</summary>
+    public static QuantityKind Temperature { get; } = new()
+    {
+        Id = "wmoop.core/Temperature",
+        Name = "Temperature",
+        DimL = 0,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 1,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/Kelvin",
+    };
+
+    /// <summary>Plane angle; a quantity of dimension one, distinct in kind from Count. Individual <c>wmoop.core/Angle</c>.</summary>
+    public static QuantityKind Angle { get; } = new()
+    {
+        Id = "wmoop.core/Angle",
+        Name = "Angle",
+        DimL = 0,
+        DimM = 0,
+        DimT = 0,
+        DimI = 0,
+        DimTheta = 0,
+        DimN = 0,
+        DimJ = 0,
+        CanonicalUnit = "wmoop.core/Radian",
+    };
 }
