@@ -109,9 +109,10 @@ records the exact commits it was generated from.
   python external/wmoop.tools/tools/regen_binding.py --lang csharp
   ```
 
-When the model changes in a way the hand-written half relies on, for example a new
-`AdministrativeArea` subclass that needs its `Accept`, the regeneration PR fails to build. A human
-then adds the behaviour half. Generated code never needs a manual edit
+Sometimes the model changes in a way the hand-written half relies on, for example a new
+`AdministrativeArea` subclass that needs its `Accept`. The regeneration run then fails at build and
+opens no pull request. A human moves the pins on a branch, regenerates and adds the behaviour half.
+Generated code never needs a manual edit
 ([docs/03-architecture.md §4.4](https://github.com/WMOOP/wmoop.doc/blob/main/docs/03-architecture.md)).
 
 ## License
