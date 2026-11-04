@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Org", "Wmoop.Org\Wmoo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Philosophy", "Wmoop.Philosophy\Wmoop.Philosophy.csproj", "{0D523082-4FDE-5870-8E96-AF714FF0D5D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Religion", "Wmoop.Religion\Wmoop.Religion.csproj", "{0EFEBE52-C988-516D-A374-7EC9A89B8EA6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Space", "Wmoop.Space\Wmoop.Space.csproj", "{32678B0A-A566-5D83-B6E4-98BE93084B5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmoop.Transport", "Wmoop.Transport\Wmoop.Transport.csproj", "{1CF8E245-8500-5703-A40C-CABF96A3C0C3}"
@@ -73,6 +75,10 @@ Global
 		{0D523082-4FDE-5870-8E96-AF714FF0D5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D523082-4FDE-5870-8E96-AF714FF0D5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D523082-4FDE-5870-8E96-AF714FF0D5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EFEBE52-C988-516D-A374-7EC9A89B8EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EFEBE52-C988-516D-A374-7EC9A89B8EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EFEBE52-C988-516D-A374-7EC9A89B8EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EFEBE52-C988-516D-A374-7EC9A89B8EA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32678B0A-A566-5D83-B6E4-98BE93084B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32678B0A-A566-5D83-B6E4-98BE93084B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32678B0A-A566-5D83-B6E4-98BE93084B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
